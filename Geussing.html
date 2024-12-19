@@ -1,0 +1,228 @@
+ <!doctype html> 
+ <html>
+     <head>
+         <meta charset="utf-8">
+         <title>NUMBER GUESSING</title>
+         <style rel=".css">
+         body{
+             user-select: none;
+             background-color: purple;
+         }
+         div{
+             border:10px groove;
+             width:500px;
+             height:700px;
+             background-color:green;
+         }
+             button {
+                 border-radius: 20px;
+                 font-size: 50px;
+                 background-color: gold;
+                 font-family: cursive;
+             }
+             #input{
+                 margin-left:150px;
+                 margin-top:20px;
+                 width:200px;
+                 height:50px;
+                 border-radius:20px;
+                 border:5px inset;
+                 background-color: aqua;
+                 color:blue;
+                 text-align: center;
+                 border-block-color: black;
+             }
+             p{
+                 text-align:center;
+                 margin:50px;
+                 font-style: italic;
+                 font-size:20px;
+             }
+             table{
+                 margin-left:200px;
+                 margin-top:4px;
+             }
+             #restart{
+                 margin-left:200px;
+             }
+             marquee{
+              direction: left;
+             }
+         </style>
+     </head>
+ <title>Number guessing game</title> 
+ <div id="won">
+  <marquee><h1>GUESSING GAME </h1></marquee>
+ <input id="input" type="text" placeholder="Enter your guess..." autofocus> 
+  <p id="output">I am thinking of a number between 0 and 9.</p> 
+ <button>GUESS</button>
+ <input type="reset" value="Reset" id="reset">
+ <table id="table" border="1">
+     <tr>
+         <td><button id="num1">1</button></td>
+         <td><button id="num2">2</button></td>
+         <td><button id="num3">3</button></td>
+     </tr>
+     <tr>
+         <td><button id="num4">4</button></td>
+         <td><button id="num5">5</button></td>
+         <td><button id="num6">6</button></td>
+     </tr>
+     <tr>
+         <td><button id="num7">7</button></td>
+         <td><button id="num8">8</button></td>
+         <td><button id="num9">9</button></td>
+     </tr>
+      <tr>
+         <td></td>
+         <td><button id="num0">0</button></td>
+         <td></td>
+     </tr>
+ </table>
+ </div>
+ <script type="text/javascript"> 
+ var mysteryNumber = Math.floor(Math.random()*10);
+ console.log(mysteryNumber);
+ var playersGuess = 0; 
+ var guessesRemaining = 3;
+ var guessesMade = 0;
+ var gameState =" ";
+ var gameWon = false;
+ var value = "";
+ //The input and output fields 
+ var input = document.querySelector("#input"); 
+ var output = document.querySelector("#output"); 
+ //The button 
+ var button = document.querySelector("button"); 
+ button.style.cursor = "pointer"; 
+ button.addEventListener("click", clickHandler, false); 
+ function clickHandler() 
+ { 
+     validateInput();
+     function validateInput(){
+         playersGuess = parseInt(input.value);
+         if(isNaN(playersGuess)){
+             output.innerHTML="Please Enter a number";
+         }else{
+   playGame(); 
+         }
+     }
+ }
+ function playGame() 
+ { 
+     guessesRemaining--;
+     guessesMade++;
+     gameState ="Guess:"+guessesMade+", Remaining:"+guessesRemaining;
+   playersGuess = parseInt(input.value); 
+   if(playersGuess > mysteryNumber) 
+    { 
+      output.innerHTML = "That's too high."+gameState; 
+      if(guessesRemaining<1){
+          endGame();
+      }
+   } 
+   else if(playersGuess < mysteryNumber) 
+   { 
+      output.innerHTML = "That's too low."+gameState;
+      if(guessesRemaining<1){
+          endGame();
+      }
+   } 
+   else if(playersGuess === mysteryNumber){ 
+      output.innerHTML = "You got it!"; 
+      gameWon=true;
+      endGame();
+   } 
+ }
+ function endGame()
+ {
+   document.querySelector("#won");
+   won.style.textAlign="center";
+   won.style.fontSize="50px";
+   won.style.fontFamily="serif";
+   won.style.color="purple";
+   won.style.direction="down";
+     if(gameWon){
+         button.addEventListener("click",clickHandler,false);
+     won.innerHTML="WON !!!";
+     }else{
+       button.addEventListener("click",clickHandler,false);
+     won.innerHTML="LOST GAME OVER";
+     }
+ }
+ var reset = document.querySelector("#reset");
+   reset.addEventListener("click",onclick,false);
+   function onclick(){
+       input.value =" ";
+       value =" ";
+   }
+   reset.style.height ="50px";
+   reset.style.width ="150px";
+   reset.style.borderStyle = "5px groove";
+   reset.style.borderRadius ="20px";
+   reset.style.backgroundColor ="purple";
+   reset.style.fontFamily ="cursive";
+   reset.style.fontSize ="50px";
+   button.style.marginLeft ="130px";
+   var num1 = document.querySelector("#num1");
+   num1.addEventListener("click",click1,false);
+   function click1(){
+       input.value =value+"1";
+       value =value+"1";
+   }
+   var num1 = document.querySelector("#num2");
+   num1.addEventListener("click",click2,false);
+   function click2(){
+       input.value =value+"2";
+       value =value+"2";
+   }
+   var num1 = document.querySelector("#num3");
+   num1.addEventListener("click",click3,false);
+   function click3(){
+       input.value =value+"3";
+       value =value+"3";
+   }
+   var num1 = document.querySelector("#num4");
+   num1.addEventListener("click",click4,false);
+   function click4(){
+       input.value =value+"4";
+       value =value+"4";
+   }
+   var num1 = document.querySelector("#num5");
+   num1.addEventListener("click",click5,false);
+   function click5(){
+       input.value =value+"5";
+       value =value+"5";
+   }
+   var num1 = document.querySelector("#num6");
+   num1.addEventListener("click",click6,false);
+   function click6(){
+       input.value =value+"6";
+       value =value+"6;"
+   }
+   var num1 = document.querySelector("#num7");
+   num1.addEventListener("click",click7,false);
+   function click7(){
+       input.value =value+"7";
+       value =value+"7";
+   }
+   var num1 = document.querySelector("#num8");
+   num1.addEventListener("click",click8,false);
+   function click8(){
+       input.value =value+"8";
+       value =value+"8";
+   }
+   var num1 = document.querySelector("#num9");
+   num1.addEventListener("click",click9,false);
+   function click9(){
+       input.value =value+"9";
+       value =value+"9";
+   }
+ var num0 = document.querySelector("#num0");
+ num0.addEventListener("click",click0,false);
+ function click0(){
+  input.value =value+"0";
+  value =value+"0";
+ }
+ </script> 
+ </html>
